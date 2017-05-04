@@ -51,18 +51,18 @@ public class Generate {
 		for (Entry<String, Integer[]> e : custprodstate.entrySet()) {
 
 			String[] key = e.getKey().split(",");
-			Integer[] custAvg = e.getValue();
-			int ca = custAvg[0] / custAvg[1];
+			Integer[] custavg = e.getValue();
+			int ca = custavg[0] / custavg[1];
 
 			String otherstate = key[0] + "," + key[1];
-			Integer[] otherStateAvg = custprod.get(otherstate);
+			Integer[] allstate = custprod.get(otherstate);
 			//allstate - state = otherstate
-			int osa = (otherStateAvg[0] - custAvg[0]) / (otherStateAvg[1] - 1);
+			int otherstateavg = (allstate[0] - custavg[0]) / (allstate[1] - custavg[1]);
 			String otherprod = key[0] + "," + key[2];
 			Integer[] otherProdAvg = custstate.get(otherprod);
 			//allprod - prod = otherprod
-			int opa = (otherProdAvg[0] - custAvg[0]) / (otherProdAvg[1] - 1);	
-			System.out.println(String.format("%-10s%-9s%-5s%10d%17d%16d", key[0], key[1], key[2], ca, osa, opa));
+			int opa = (otherProdAvg[0] - custavg[0]) / (otherProdAvg[1] - custavg[1]);	
+			System.out.println(String.format("%-10s%-9s%-5s%10d%17d%16d", key[0], key[1], key[2], ca, otherstateavg, opa));
 		}
 	}
 
@@ -133,7 +133,7 @@ public class Generate {
 			
 			int onethird = (int) Math.ceil(e.getValue() / 3);
 			
-			System.out.println(ckey[0]+","+ckey[1]+",sum: "+e.getValue()+", onethird: "+onethird);
+			//System.out.println(ckey[0]+","+ckey[1]+",sum: "+e.getValue()+", onethird: "+onethird);
 			int mon = 0;
 			int sum = 0;
 			for (int i = 1; i <= 12; i++) {	//sum all month until equals or greater than 1/3
@@ -145,7 +145,7 @@ public class Generate {
 					mon = i;
 					break;
 				}
-				System.out.println(key+"  sum: "+sum+" i: "+i);
+				//System.out.println(key+"  sum: "+sum+" i: "+i);
 			}
 			// System.out.println(ckey[0]+","+ckey[1]+","+mon);
 			System.out.println(String.format("%-10s%-9s%-10s", ckey[0], ckey[1], mon));
