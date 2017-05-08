@@ -1,4 +1,4 @@
-package com;
+package assignment1;
 import java.sql.*;
 public class sdap {
 

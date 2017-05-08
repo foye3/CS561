@@ -1,4 +1,4 @@
-package com;
+package assignment1;
 
 public class Customer {
 	private String custname;
